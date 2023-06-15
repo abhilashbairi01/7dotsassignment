@@ -1,0 +1,89 @@
+body {
+  height: 100%;
+  width: 100%;
+}
+
+#header_title {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.subheading_title {
+  font-size: 10px;
+}
+
+.title_text {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#timer {
+  text-align: center !important;
+  
+}
+
+.countdown-text {
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold;
+}
+
+.countdown-text {
+  margin-left: 3.5%;
+  margin-top: 0.5%;
+  font-weight: bold;
+  margin-top: -5%;
+  text-align: center;
+}
+svg {
+  transform: rotateY(-180deg) rotateZ(-90deg);
+  width: 150px;
+  height: 150px;
+}
+
+svg circle {
+  stroke-dasharray: 314.15927px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 4px;
+  stroke: violet;
+  fill: none;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0deg;
+  }
+  to {
+    stroke-dashoffset: 10285.57572deg;
+  }
+}
+#tensec {
+  height: 25px;
+  width: 75px;
+  /* background-color:blue; */
+  border: none;
+  color: violet;
+  text-align: center;
+}
+#skip {
+  height: 25px;
+  width: 75px;
+  /* background-color:blue; */
+  border: none;
+  color: violet;
+  text-align: center;
+}
+#lastfooter{
+    text-align: center;
+}
+#lastfooters {
+    margin:auto;
+    background-color:lightgray;
+    width:25%;
+    height:20%;
+    border-radius: 10px;
+    text-align: center!important;
+}
+#cleansingimg{
+    float: left;
+}
