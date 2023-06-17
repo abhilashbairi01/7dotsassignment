@@ -16,74 +16,25 @@ body {
   font-size: 20px;
   font-weight: 500;
 }
-
-#timer {
-  text-align: center !important;
-  
+#timer{
+  display: flex;
+  justify-content: center;
+  margin-top:5%;
 }
-
-.countdown-text {
-  font-size: 24px; /* Adjust the font size as needed */
-  font-weight: bold;
-}
-
-.countdown-text {
-  margin-left: 3.5%;
-  margin-top: 0.5%;
-  font-weight: bold;
-  margin-top: -5%;
-  text-align: center;
-}
-svg {
-  transform: rotateY(-180deg) rotateZ(-90deg);
-  width: 150px;
-  height: 150px;
-}
-
-svg circle {
-  stroke-dasharray: 314.15927px;
-  stroke-dashoffset: 0px;
-  stroke-linecap: round;
-  stroke-width: 4px;
-  stroke: violet;
-  fill: none;
-}
-
-@keyframes countdown {
-  from {
-    stroke-dashoffset: 0deg;
-  }
-  to {
-    stroke-dashoffset: 10285.57572deg;
-  }
-}
-#tensec {
-  height: 25px;
-  width: 75px;
-  /* background-color:blue; */
-  border: none;
-  color: violet;
-  text-align: center;
-}
-#skip {
-  height: 25px;
-  width: 75px;
-  /* background-color:blue; */
-  border: none;
-  color: violet;
+#timer-extends{
   text-align: center;
 }
 #lastfooter{
-    text-align: center;
+  text-align: center;
 }
 #lastfooters {
-    margin:auto;
-    background-color:lightgray;
-    width:25%;
-    height:20%;
-    border-radius: 10px;
-    text-align: center!important;
+  margin:auto;
+  background-color:#E7E7E7;
+  width:25%;
+  height:20%;
+  border-radius: 10px;
+  text-align: center!important;
 }
 #cleansingimg{
-    float: left;
+  float: left;
 }

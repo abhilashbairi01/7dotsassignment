@@ -1,31 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { useCountdown } from "react-countdown-circle-timer";
 import "./Timer.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import cleaning from "../assets/images/clean.svg";
+import { Container, Button, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFastForward } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 
-function Timer() {
-  const [countdownNumber, setCountdownNumber] = useState(60);
-  const [animationDuration, setAnimationDuration] = useState(60);
 
-  useEffect(() => {
-    if (countdownNumber > 0) {
-      const timer = setTimeout(() => {
-        setCountdownNumber((prevCountdownNumber) => prevCountdownNumber - 1);
-      }, 1000);
-      setAnimationDuration(countdownNumber);
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [countdownNumber]);
+function Timer({ size = 180 }) {
+  const {
+    path,
+    pathLength,
+    stroke,
+    strokeDashoffset,
+    remainingTime: elapsedTime,
+    // elapsedTime,
+    strokeWidth,
+  } = useCountdown({ isPlaying: true, duration: 60, colors: "#abc" });
+  const [remainingTime, setRemainingTime] = useState(60);
 
-  function AddTimer() {
-    setCountdownNumber((prevCountdownNumber) => prevCountdownNumber + 10);
-    setAnimationDuration((prevAnimationDuration) => prevAnimationDuration + 10);
-  }
+  const addTime = () => {
+    setRemainingTime((prevRemainingTime) => prevRemainingTime + 10);
+  };
 
   function calculateStrokeOffset() {
-    const remainingPercentage = (countdownNumber / 60) * 100;
-    const offset = 314 - (314 * remainingPercentage) / 100;
+    const remainingPercentage = (remainingTime / 60) * 100;
+    const offset = (pathLength * remainingPercentage) / 100;
     return offset;
   }
 
@@ -36,34 +39,43 @@ function Timer() {
         <div className="subheading_title">Subheading here</div>
       </div>
       <div id="timer">
-        <svg xmlns="http://www.w3.org/2000/svg">
-          <circle
-            cx="50"
-            cy="50"
-            r="50"
-            style={{
-              strokeDashoffset: calculateStrokeOffset(),
-              animation: `countdown ${animationDuration}s linear forwards`,
-            }}
-          ></circle>
-        </svg>
-        <div className="countdown-container">
-          <div className="countdown-text">00:{countdownNumber}</div>
-        </div>
+        <CountdownCircleTimer
+          isPlaying
+          duration={remainingTime}
+          colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+          colorsTime={[7, 5, 2, 0]}
+          strokeWidth={strokeWidth}
+          size={size}
+          strokeLinecap="round"
+          trailColor="#d8d8d8"
+          trailStrokeWidth={strokeWidth}
+          strokeDasharray={`${pathLength} ${pathLength}`}
+          strokeDashoffset={calculateStrokeOffset()}
+        >
+          {({ remainingTime }) => remainingTime}
+        </CountdownCircleTimer>
       </div>
-      <br></br>
       <br />
+      <div id="timer-extends">
+        <button
+          type="button"
+          class="border border-primary rounded-lg rounded-pill btn btn-outline-primary "
+          id="tensec"
+          onClick={addTime}
+        >
+          +10sec
+        </button>
+        <span style={{ marginLeft: "2%" }}></span>
+        <button
+          type="button"
+          class="border border-primary rounded-lg rounded-pill btn btn-outline-primary"
+          id="skip"
+        >
+          <FontAwesomeIcon icon={faFastForward} /> Skip
+        </button>
+      </div>
       <br />
-      <div id="footer" style={{ textAlign: "center" }}>
-        <div id="timer-extends">
-          <button id="tensec" onClick={AddTimer}>
-            +10sec
-          </button>
-          <span style={{ marginLeft: "2%" }}></span>
-          <button id="skip">Skip</button>
-        </div>
-        <br />
-        <br/>
+      <div id="card">
         <div
           id="lastfooter"
           style={{
@@ -73,7 +85,9 @@ function Timer() {
           }}
         >
           <div id="lastfooters">
-            <div id="step" style={{float:'left',fontWeight:'bold'}}>Step 2/3</div>
+            <div id="step" style={{ float: "left", fontWeight: "bold" }}>
+              Step 2/3
+            </div>
             <br />
             <div
               id="cleansingimg"
@@ -87,7 +101,7 @@ function Timer() {
               />
               <div
                 id="text_clean"
-                style={{ fontWeight: "bold", marginLeft: "10px" }}
+                style={{ fontWeight: "600", marginLeft: "10px" }}
               >
                 Cleansing
               </div>
@@ -105,12 +119,12 @@ function Timer() {
                 style={{
                   color: "black",
                   fontWeight: "bold",
-                  marginLeft:'-70%'
+                  marginLeft: "-70%",
                 }}
               >
-                60sec
+              <FontAwesomeIcon icon={faClock} />  60sec
               </div>
-              <div id="howtodo" style={{ color: "violet", fontWeight: "bold" }}>
+              <div id="howtodo" style={{ color: "violet", fontWeight: "500" }}>
                 How to do
               </div>
             </div>
